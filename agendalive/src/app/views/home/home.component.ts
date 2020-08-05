@@ -13,7 +13,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   openDialog() {
-    const dialogRef = this.dialog.open(LiveFormDialogComponent);
+    const dialogRef = this.dialog.open(LiveFormDialogComponent, {
+      minWidth: '400px',
+    });
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
