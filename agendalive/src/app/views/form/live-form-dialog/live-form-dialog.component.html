@@ -1,14 +1,43 @@
 <h2 mat-dialog-title>Nova Live</h2>
-<mat-dialog-content class="mat-typography">
-  <p>
-    <mat-form-field appearance="outline">
-      <mat-label>Nome</mat-label>
-      <input matInput placeholder="Digite o nome da live" />
+<mat-dialog-content>
+  <form class="example-form" [formGroup]="liveForm">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nome da Live</mat-label>
+      <input
+        matInput
+        formControlName="liveName"
+        name="liveName"
+        placeholder="Digite o nome da live"
+      />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-  </p>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Nome dp Canal</mat-label>
+      <input
+        matInput
+        formControlName="channelName"
+        name="channelName"
+        placeholder="Digite o nome do canal"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label>Link</mat-label>
+      <input
+        matInput
+        formControlName="liveLink"
+        name="liveLink"
+        placeholder="Digite o link da live"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="cancelar()" mat-dialog-close color="primary">Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="primary">Salvar</button>
+  <button mat-button (click)="cancelar()">
+    Cancelar
+  </button>
+  <button mat-raised-button (click)="saveLive()"color="primary">
+    Salvar
+  </button>
 </mat-dialog-actions>
