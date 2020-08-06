@@ -17,7 +17,6 @@ import { HomeComponent } from 'src/app/views/home/home.component';
 import { LiveFormDialogComponent } from 'src/app/views/form/live-form-dialog/live-form-dialog.component';
 import { LocalDateTimePipe } from '../../pipe/local-date-time.pipe';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatDatepickerModule,
     MatDatepickerModule,
-    MatMomentDateModule,
     MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
