@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>Nova Live</h2>
 <mat-dialog-content>
   <form class="example-form" [formGroup]="liveForm">
-    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-form-field class="example-full-width">
       <mat-label>Nome da Live</mat-label>
       <input
         matInput
@@ -11,8 +11,8 @@
       />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Nome dp Canal</mat-label>
+    <mat-form-field class="example-full-width">
+      <mat-label>Nome do Canal</mat-label>
       <input
         matInput
         formControlName="channelName"
@@ -21,7 +21,7 @@
       />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
-    <mat-form-field class="example-full-width" appearance="outline">
+    <mat-form-field class="example-full-width" >
       <mat-label>Link</mat-label>
       <input
         matInput
@@ -31,13 +31,38 @@
       />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
+    <div fxLayout="row wrap">
+      <div fxFlex="50" fxFill fxLayoutAlign="start center">
+        <mat-form-field>
+          <mat-label>Data da Live</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="liveDate" />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50" fxFill fxLayoutAlign="end center">
+        <mat-form-field>
+          <mat-label>Horário da Live</mat-label>
+          <input
+            matInput
+            type="time"
+            placeholder=""
+            formControlName="liveTime"
+            #time
+          />
+        </mat-form-field>
+      </div>
+    </div>
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button (click)="cancelar()">
     Cancelar
   </button>
-  <button mat-raised-button (click)="saveLive()"color="primary">
+  <button mat-raised-button (click)="saveLive()" color="primary">
     Salvar
   </button>
 </mat-dialog-actions>
