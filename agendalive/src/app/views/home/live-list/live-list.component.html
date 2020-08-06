@@ -1,6 +1,8 @@
 <mat-tab-group mat-align-tabs="center" class="mat-tab-group">
   <mat-tab label="Próximas">
-    <div fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 2%;">
+    <mat-progress-bar *ngIf="!next" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="next" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 2%;">
       <ng-container *ngFor="let live of livesNext" style="margin: 0.5%;">
         <mat-card
           class="mat-card-live"
@@ -32,15 +34,16 @@
             </mat-card-title>
           <mat-card-content fxLayoutAlign="center center">
             <div>
-              <iframe width="500" height="315" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="400" height="315" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </mat-card-content>
         </mat-card>
       </ng-container>
     </div>
   </mat-tab>
-  <mat-tab label="Realizadas"> 
-    <div fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 2%;">
+  <mat-tab label="Realizadas">
+    <mat-progress-bar *ngIf="!previous" mode="indeterminate"></mat-progress-bar> 
+    <div *ngIf="previous" fxLayout="row wrap" fxLayoutAlign="center center" style="padding: 2%;">
       <ng-container *ngFor="let live of livesPrevious" style="margin: 0.5%;">
         <mat-card
           class="mat-card-live"
@@ -72,7 +75,7 @@
             </mat-card-title>
           <mat-card-content fxLayoutAlign="center center">
             <div>
-              <iframe width="500" height="315" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe width="400" height="315" [src]="live.urlSafe" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </mat-card-content>
         </mat-card>

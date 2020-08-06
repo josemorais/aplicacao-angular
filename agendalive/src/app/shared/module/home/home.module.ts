@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { HomeComponent } from 'src/app/views/home/home.component';
 import { LiveFormDialogComponent } from 'src/app/views/form/live-form-dialog/live-form-dialog.component';
@@ -42,6 +43,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDatepickerModule,
     MatDatepickerModule,
     MatMomentDateModule,
+    MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
   ],

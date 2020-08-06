@@ -30,16 +30,17 @@ export class LiveFormDialogComponent implements OnInit {
   }
 
   saveLive(): void {
-    let newDate: moment.Moment = moment
+    const newDate: moment.Moment = moment
       .utc(this.liveForm.value.liveDate)
       .local();
     this.liveForm.value.liveDate =
       newDate.format('YYYY-MM-DD') + 'T' + this.liveForm.value.liveTime;
-      
+
     this.liveService.saveLives(this.liveForm.value).subscribe((response) => {
       console.log(response);
       this.dialogRef.close();
       this.liveForm.reset();
+      window.location.reload();
     });
   }
 

@@ -11,6 +11,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class LiveListComponent implements OnInit {
   livesPrevious: Live[];
   livesNext: Live[];
+  previous = false;
+  next = false;
 
   constructor(
     private liveService: LiveService,
@@ -29,6 +31,7 @@ export class LiveListComponent implements OnInit {
           live.liveLink
         );
       });
+      this.previous = true;
     });
     this.liveService.getLivesWithFlag('next').subscribe((data) => {
       this.livesNext = data.content;
@@ -37,6 +40,7 @@ export class LiveListComponent implements OnInit {
           live.liveLink
         );
       });
+      this.next = true;
     });
   }
 }
