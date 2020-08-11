@@ -1,9 +1,11 @@
+import { WebSocketConnector } from './../../../shared/websocket/websocket-connector';
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LiveService } from 'src/app/shared/service/live.service';
 
 import * as moment from 'moment';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-live-form-dialog',
@@ -16,7 +18,7 @@ export class LiveFormDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<LiveFormDialogComponent>,
     private liveService: LiveService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -40,7 +42,6 @@ export class LiveFormDialogComponent implements OnInit {
       console.log(response);
       this.dialogRef.close();
       this.liveForm.reset();
-      window.location.reload();
     });
   }
 

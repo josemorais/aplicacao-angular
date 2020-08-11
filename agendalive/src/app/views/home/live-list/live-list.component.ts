@@ -1,3 +1,4 @@
+import { WebSocketConnector } from './../../../shared/websocket/websocket-connector';
 import { Component, OnInit } from '@angular/core';
 import { LiveService } from 'src/app/shared/service/live.service';
 import { Live } from 'src/app/shared/model/live.model';
@@ -9,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./live-list.component.css'],
 })
 export class LiveListComponent implements OnInit {
+  private webSocketConnector: WebSocketConnector;
   livesPrevious: Live[];
   livesNext: Live[];
   previous = false;
@@ -16,11 +18,26 @@ export class LiveListComponent implements OnInit {
 
   constructor(
     private liveService: LiveService,
-    private sanitize: DomSanitizer
+    private sanitize: DomSanitizer,
   ) {}
 
   ngOnInit(): void {
+    this.connector();
     this.getLives();
+  }
+
+  connector(): void {
+    this.webSocketConnector = new WebSocketConnector(
+      'http://localhost:8080/socket',
+      '/liveProcessor',
+      this.onMessage.bind(this)
+    );
+  }
+
+  onMessage(message: any): void {
+    const liveMessage = JSON.parse(message.body);
+    liveMessage.urlSafe = this.sanitize.bypassSecurityTrustResourceUrl(liveMessage.liveLink);
+    this.livesPrevious.push(liveMessage);
   }
 
   getLives() {
