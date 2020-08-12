@@ -4,6 +4,8 @@ import { LiveService } from 'src/app/shared/service/live.service';
 import { Live } from 'src/app/shared/model/live.model';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import * as moment from 'moment';
+
 @Component({
   selector: 'app-live-list',
   templateUrl: './live-list.component.html',
@@ -11,14 +13,14 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class LiveListComponent implements OnInit {
   private webSocketConnector: WebSocketConnector;
-  livesPrevious: Live[];
-  livesNext: Live[];
+  livesPrevious: Live[] = [];
+  livesNext: Live[] = [];
   previous = false;
   next = false;
 
   constructor(
     private liveService: LiveService,
-    private sanitize: DomSanitizer,
+    private sanitize: DomSanitizer
   ) {}
 
   ngOnInit(): void {
@@ -36,8 +38,19 @@ export class LiveListComponent implements OnInit {
 
   onMessage(message: any): void {
     const liveMessage = JSON.parse(message.body);
-    liveMessage.urlSafe = this.sanitize.bypassSecurityTrustResourceUrl(liveMessage.liveLink);
-    this.livesPrevious.push(liveMessage);
+    liveMessage.urlSafe = this.sanitize.bypassSecurityTrustResourceUrl(
+      liveMessage.liveLink
+    );
+    this.setLivesPreviousOrNext(liveMessage);
+  }
+
+  setLivesPreviousOrNext(live: Live) {
+    const dateIsBefore = moment(live.liveDate).isBefore(moment());
+    if (dateIsBefore) {
+      this.livesPrevious.push(live);
+    } else {
+      this.livesNext.push(live);
+    }
   }
 
   getLives() {
